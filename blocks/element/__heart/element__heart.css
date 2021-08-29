@@ -1,0 +1,7 @@
+.element__heart {
+  max-height: 19px;
+}
+
+.element__heart:hover {
+  opacity: 0.5;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./pages/index.css"/>
+    <title>Место</title>
+  </head>
+
+  <body class="root">
+    <div class="page">
+      <header class="header">
+          <img class="header__logo" src="./images/header-logo.svg" alt="Mesto"/>
+          <hr class="header__line"/>
+      </header>
+
+      <main class="content">
+        
+        <section class="profile">
+          <div class="profile__user">
+            <img class="profile__avatar" src="./images/avatar-image.jpg" alt="Аватар">
+            <div class="profile__info">
+              <div class="profile__info-edit">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <img class="profile__edit-button" src="./images/profile-edit-button.svg" alt="Редактировать">
+              </div>
+              <p class="profile__description">Исследователь океана</p>
+            </div>
+          </div>
+          <img class="profile__add-button" src="./images/profile-add-button.svg" alt="+">
+        </section>
+
+        <section>
+          <ul class="elements">
+            <li class="element">
+              <img class="element__image" src="./images/element-karachaevsk.jpg" alt="Карачаевск">
+              <div class="element__caption">
+                <p class="element__header">Карачаевск</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/element-gora-elbrus.jpg" alt="Гора Эльбрус">
+              <div class="element__caption">
+                <p class="element__header">Гора Эльбрус</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/element-dombai.jpg" alt="Домбай">
+              <div class="element__caption">
+                <p class="element__header">Домбай</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/element-gora-elbrus.jpg" alt="Гора Эльбрус">
+              <div class="element__caption">
+                <p class="element__header">Гора Эльбрус</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/element-dombai.jpg" alt="Домбай">
+              <div class="element__caption">
+                <p class="element__header">Домбай</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/element-karachaevsk.jpg" alt="Карачаево-Черкесия">
+              <div class="element__caption">
+                <p class="element__header">Карачаево-Черкесия</p>
+                <img class="element__heart" src="./images/element-heart.svg" alt="Лайк">
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="popup popup_opened">
+          <div class="popup__container">
+            <img class="popup__close-btn" src="./images/edit-form-image.svg" alt="Закрыть">
+            <h1 class="popup__header">Редактировать профиль</h1>
+            <ul class="popup__texts">
+              <li>
+                <input type="text" value="Жак-Ив Кусто" placeholder="Имя" class="popup__text popup__name">
+                <hr class="popup__line"/>
+              </li>
+              <li>
+                <input type="text" value="Исследователь океана" placeholder="О себе" class="popup__text popup__description">
+                <hr class="popup__line"/>
+              </li>
+            </ul>
+            <button class="popup__save-btn">Сохранить</button>
+          </div>
+        </section>
+
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+      </footer>
+    </div>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
