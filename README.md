@@ -8,4 +8,4 @@
 
 Проект рекомендуется открывать в браузерах Firefox, Chrome и Яндекс Браузер.
 
-Выполненный проект можно посмотреть по ссылке [тут](https://juliapechnikova.github.io/russian-travel/)
+Выполненный проект можно посмотреть по ссылке [тут](https://juliapechnikova.github.io/mesto/)
