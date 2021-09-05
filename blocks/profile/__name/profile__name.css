@@ -5,6 +5,10 @@
   font-size: 42px;
   line-height: 48px;
   padding-right: 18px;
+  text-overflow: ellipsis;   
+  white-space: nowrap;   
+  overflow: hidden;
+  max-width: 294px;
 }
 
 @media screen and (max-width: 700px) {
@@ -17,5 +21,6 @@
   .profile__name {
     font-size: 27px;
     line-height: 33px;
+    max-width: 189px;
   }
 }

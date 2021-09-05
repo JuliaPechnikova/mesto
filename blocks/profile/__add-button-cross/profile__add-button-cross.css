@@ -1,0 +1,9 @@
+.profile__add-button-cross {
+  width: 22px;
+}
+
+@media screen and (max-width: 340px) {
+  .profile__add-button-cross {
+    width: 16px;
+  }
+}

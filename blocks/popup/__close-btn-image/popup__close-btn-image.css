@@ -1,0 +1,14 @@
+.popup__close-btn-image {
+  max-width: 32px;
+  position: absolute;
+  bottom: 319px;
+  left: 394px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__close-btn-image {
+    max-width: 20px;
+    bottom: 317px;
+    left: 240px;
+  }
+}
