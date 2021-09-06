@@ -62,3 +62,56 @@ let description = content.querySelector('.profile__description');
 
   editButton.addEventListener('click', openedPopup);
 
+// Добавление карточек на страницу
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+//Секция добавления карточек 
+const cardsContainer = content.querySelector('.elements');
+
+//Создание карточек и добавление на страницу
+function addCards(cardName, cardLink) {
+  //Находим шаблон с карточками
+  const cardTemplate = document.querySelector('.element-template').content;
+  //Клонируем
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  
+  //Поля заголовков и картинок, которые будут менятся
+  cardElement.querySelector('.element__header').textContent = cardName;
+  cardElement.querySelector('.element__image').setAttribute('src', cardLink);
+  
+  //Отображение карточек в секции elements
+  cardsContainer.append(cardElement);
+};
+
+//Генерация стартовой страницы из переменной с названием и ссылкой на картинку
+initialCards.map(function (el) {
+  addCards(el.name, el.link);
+});
+
+
