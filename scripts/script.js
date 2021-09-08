@@ -1,69 +1,77 @@
+
 let content = document.querySelector('.content');
 let editButton = content.querySelector('.profile__edit-button');
-let popup = content.querySelector('.popup');
-let open = false;
 let personName = content.querySelector('.profile__name');
 let description = content.querySelector('.profile__description');
+let addCardButton = content.querySelector('.profile__add-button');
+let popup = document.querySelector('.popup');
+let closeButton = popup.querySelector('.popup__close-btn');
+let form = popup.querySelector('.popup__texts');
+let popupIdFirstfield = popup.querySelector('#popup-id-firstfield');
+let popupIdSecondfield = popup.querySelector('#popup-id-secondfield');
 
+function editProfilePopup () {
+  popup.querySelector('.popup__header').textContent = 'Редактировать профиль';
+  popupIdFirstfield.value = `${personName.textContent}`;
+  popupIdSecondfield.value = `${description.textContent}`;
+  popupIdFirstfield.placeholder = 'Имя';
+  popupIdSecondfield.placeholder = 'О себе';
+  popupIdFirstfield.name= 'profile-name';
+  popupIdSecondfield.name = 'description';
+  form.name = 'edit-profile';
+  openedPopup();
+}
 
-//Добавление формы редактирования Имени и профессии пользователя
+function editCardPopup () {
+  popup.querySelector('.popup__header').textContent = 'Новое место';
+  popupIdFirstfield.value = '';
+  popupIdSecondfield.value = '';
+  popupIdFirstfield.placeholder = 'Название';
+  popupIdSecondfield.placeholder = 'Ссылка на картинку';
+  popupIdFirstfield.name = 'name';
+  popupIdSecondfield.name = 'link';
+  form.name = 'edit-place';
+  openedPopup();
+}
 
-  function openedPopup() {
+// Функция открытия попап
+function openedPopup() {
+  //Добавление класса для отображения попап
+  popup.classList.add('popup_opened');
+};
 
-    //Добавление класса для отображения попап
-    popup.classList.add('popup_opened');
+//Функция сохранения данных, введенных в форму
+function submitForm(event) {
+  event.preventDefault(); 
+  if (form.name === 'edit-profile') {
+    //Добавление данных из профиля в форму
+    personName.textContent = popupIdFirstfield.value;
+    description.textContent = popupIdSecondfield.value; 
+  }
+  else {
+    //Отправка данных по карточке
+    addCards(popupIdFirstfield.value, popupIdSecondfield.value);
+  }
+  closedPopup(); //Закрываем форму после редактирования
+};
 
-    //Если попап был прописан, то повторно добавлятся не будет
-    if (open === !true) {
-      popup.insertAdjacentHTML('beforeend', `
-      <div class="popup__container">
-      <h2 class="popup__header">Редактировать профиль</h2>
-      <form class="popup__texts" name="formdata" action="#" method="POST">
-        <input type="text" value="${personName.textContent}" placeholder="Имя" class="popup__text" id="name" name="name">
-        <input type="text" value="${description.textContent}" placeholder="О себе" class="popup__text" id="description" name="description">
-        <button type="submit" class="popup__save-btn">Сохранить</button>
-      </form>
-      <button class="popup__close-btn" type="reset">
-        <img class="popup__close-btn-image" src="./images/edit-form-image.svg" alt="X">
-      </button>
-      </div>`);
+//Функция закрытия попап
+function closedPopup() {
+  popup.classList.remove('popup_opened');
+};
 
-      open = true;
-    };
+//Слушатель на открытие попап для редактирования профиля
+editButton.addEventListener('click', editProfilePopup);
+//Слушатель на открытие попап для добавления карточки
+addCardButton.addEventListener('click', editCardPopup);
 
-    //Объявление переменных формы
-    let nameInput = popup.querySelector('#name');
-    let descriptionInput = popup.querySelector('#description');
+//Слушатель на форму при отправке
+//form.addEventListener('submit', submitForm);  
 
-    //Добавляем дефолтные значения, для того, чтобы сбрасывались данные при закрытии без отправки
-    nameInput.value = `${personName.textContent}`;
-    descriptionInput.value = `${description.textContent}`;
-  
-    //Функция сохранения данных, введенных в форму
-    function submitForm(evt) {
-      evt.preventDefault(); 
-      personName.textContent = nameInput.value;
-      description.textContent = descriptionInput.value; 
-      closedPopup(); //Закрываем форму после редактирования
-    };
-
-    let closeButton = popup.querySelector('.popup__close-btn');
-
-    //Слуушатель на форму при отправке
-    popup.addEventListener('submit', submitForm);  
-
-    //Закрытие попапа реализуется удалением класса
-    function closedPopup() {
-      popup.classList.remove('popup_opened');
-    };
-
-    closeButton.addEventListener('click', closedPopup);
-  };
-
-  editButton.addEventListener('click', openedPopup);
+//Слушатель на закрытие попап
+closeButton.addEventListener('click', closedPopup);
 
 // Добавление карточек на страницу
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -94,24 +102,36 @@ const initialCards = [
 //Секция добавления карточек 
 const cardsContainer = content.querySelector('.elements');
 
-//Создание карточек и добавление на страницу
-function addCards(cardName, cardLink) {
   //Находим шаблон с карточками
-  const cardTemplate = document.querySelector('.element-template').content;
+  const cardTemplate = document.querySelector('#element-template').content;
+
+const addCard = (data) => {
   //Клонируем
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   
   //Поля заголовков и картинок, которые будут менятся
-  cardElement.querySelector('.element__header').textContent = cardName;
-  cardElement.querySelector('.element__image').setAttribute('src', cardLink);
-  
+  cardElement.querySelector('.element__header').textContent = data.name;
+  cardElement.querySelector('.element__image').setAttribute('src', data.link);
+  cardElement.querySelector('.element__trash-btn').addEventListener('click', (event) => {
+    event.target.closest('.element').remove();
+  });
+
   //Отображение карточек в секции elements
-  cardsContainer.append(cardElement);
+  cardsContainer.prepend(cardElement);
 };
 
-//Генерация стартовой страницы из переменной с названием и ссылкой на картинку
-initialCards.map(function (el) {
-  addCards(el.name, el.link);
+const postingCardHandler = (event) => {
+  event.preventDefault();
+
+  addCard({
+    name: cardName,
+    link: cardLink
+  });
+  form.reset();
+}
+
+form.addEventListener('submit', postingCardHandler);  
+
+initialCards.forEach((card) => {
+  addCard(card);
 });
-
-

@@ -14,7 +14,6 @@
       </header>
 
       <main class="content">
-        
         <section class="profile">
           <div class="profile__user">
             <img class="profile__avatar" src="./images/avatar-image.jpg" alt="Аватар">
@@ -35,46 +34,19 @@
 
         <section>
           <ul class="elements">
-            <li class="element">
-              <img class="element__image" src="./images/element-karachaevsk.jpg" alt="Карачаевск">
-              <div class="element__caption">
-                <h2 class="element__header">Карачаевск</h2>
-                <button type="button" class="element__button-heart">
-                  <img class="element__button-heart-image" src="./images/element-heart.svg" alt="Лайк">
-                </button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/element-gora-elbrus.jpg" alt="Гора Эльбрус">
-              <div class="element__caption">
-                <h2 class="element__header">Гора Эльбрус</h2>
-                <button type="button" class="element__button-heart">
-                  <img class="element__button-heart-image" src="./images/element-heart.svg" alt="Лайк">
-                </button>
-              </div>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/element-dombai.jpg" alt="Домбай">
-              <div class="element__caption">
-                <h2 class="element__header">Домбай</h2>
-                <button type="button" class="element__button-heart">
-                  <img class="element__button-heart-image" src="./images/element-heart.svg" alt="Лайк">
-                </button>
-              </div>
-            </li>
           </ul>
         </section>
-
-        <div class="popup"></div>
-
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <template class="element-template">
+    <template id="element-template">
       <li class="element">
         <img class="element__image" src="" alt="Карточка">
+        <button class="element__trash-btn" type="reset">
+          <img class="element__trash-btn-image" src="./images/trash-button-img.svg" alt="Очистить">
+        </button>
         <div class="element__caption">
           <h2 class="element__header"></h2>
           <button type="button" class="element__button-heart">
@@ -83,6 +55,19 @@
         </div>
       </li>
     </template>
+      <div class="popup">
+        <div class="popup__container">
+          <h2 class="popup__header"></h2>
+          <form class="popup__texts" name="formdata" action="#" method="POST">
+            <input type="text" value="" placeholder="" class="popup__text" id="popup-id-firstfield" name="popup-name-firstfield">
+            <input type="text" value="" placeholder="" class="popup__text" id="popup-id-secondfield" name="popup-name-secondfield">
+            <button type="submit" class="popup__save-btn">Сохранить</button>
+          </form>
+          <button class="popup__close-btn" type="reset">
+            <img class="popup__close-btn-image" src="./images/edit-form-image.svg" alt="X">
+          </button>
+        </div>
+      </div>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
