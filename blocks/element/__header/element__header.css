@@ -7,4 +7,28 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 216px;
+}
+@media screen and (max-width: 900px) {
+  .element__header {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .element__header {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .element__header {
+    max-width: 228px;
+  }
+}
+
+@media screen and (max-width: 624px) {
+  .element__header {
+    max-width: 100%;
+  }
 }

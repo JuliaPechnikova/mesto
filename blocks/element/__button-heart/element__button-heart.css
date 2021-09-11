@@ -1,6 +1,11 @@
 .element__button-heart {
-  background: none;
+  background: url(../../../images/element-heart.svg);
   border: 0;
   padding: 0;
-  max-height: 19px;
+  height: 19px;
+  width: 22px;
+}
+
+.element__button-heart:hover {
+  opacity: 0.5;
 }
