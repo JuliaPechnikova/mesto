@@ -66,11 +66,30 @@ const initialCards = [
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-}
+};
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+};
+
+//Закрыть попап по клавише ESC
+function closePopupESC(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(popupProfile);
+    closePopup(popupCard);
+    closePopup(popupPhoto);
+  };
 }
+
+//Закрыть попап по клику за пределы попапа
+function closePopupOnClick(evt){
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(popupProfile);
+    closePopup(popupCard);
+    closePopup(popupPhoto);
+  }
+}
+
 
 //Открыть форму для редактирования профиля
 function openProfilePopup() {
@@ -79,33 +98,13 @@ function openProfilePopup() {
   openPopup(popupProfile);
 };
 
-//Отправить данные, введенные в форму
-formEditor.addEventListener('submit', (event) => {
-  event.preventDefault(); 
-  profileName.textContent = usernameInput.value;
-  profileDescription.textContent = descriptionInput.value; 
-  closePopup(popupProfile);
-});
-
-//Закрыть форму редактирования профиля
-closeButtonEditor.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
-
 //Открыть форму для добавления карточки
 function openCardPopup(){
+  photoNameInput.value = '';
+  linkInput.value = '';
   openPopup(popupCard);
 };
 
-//Закрыть форму добавления карточки
-closeButtonCard.addEventListener('click', () => {
-  closePopup(popupCard);
-});
-
-//Закрыть фото с карточки
-closeButtonPhoto.addEventListener('click', () => {
-  closePopup(popupPhoto);
-});
 
 //Находим шаблон с карточками
 const cardTemplate = document.querySelector('#element-template').content;
@@ -169,14 +168,36 @@ const postingCardHandler = (event) => {
   closePopup(popupCard);
 }
 
-//Добавление карточек при отправке формы
-formCard.addEventListener('submit', postingCardHandler);  
-
 //Чтение данных из массива с карточками
 initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
 
+//Отправить данные, введенные в форму
+formEditor.addEventListener('submit', (event) => {
+  event.preventDefault(); 
+  profileName.textContent = usernameInput.value;
+  profileDescription.textContent = descriptionInput.value; 
+  closePopup(popupProfile);
+});
+
+//Закрыть форму редактирования профиля
+closeButtonEditor.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+
+//Закрыть форму добавления карточки
+closeButtonCard.addEventListener('click', () => {
+  closePopup(popupCard);
+});
+
+//Закрыть фото с карточки
+closeButtonPhoto.addEventListener('click', () => {
+  closePopup(popupPhoto);
+});
+
+//Добавление карточек при отправке формы
+formCard.addEventListener('submit', postingCardHandler);  
 
 //Слушатель на открытие попап для редактирования профиля
 editButton.addEventListener('click', openProfilePopup);
@@ -184,3 +205,8 @@ editButton.addEventListener('click', openProfilePopup);
 //Слушатель на открытие попап для добавления карточки
 addCardButton.addEventListener('click', openCardPopup);
 
+//Cлушатель на нажатие ESC при открытом попап
+document.addEventListener('keydown', closePopupESC);
+
+//Слушатель на нажатие за пределы попапа
+document.addEventListener('click', closePopupOnClick);

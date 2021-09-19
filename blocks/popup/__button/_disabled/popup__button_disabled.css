@@ -1,0 +1,9 @@
+.popup__button_disabled {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  background: rgba(246, 246, 246, 0.2);
+}
+
+.popup__button_disabled:hover {
+  background: rgba(246, 246, 246, 0.2);
+}

@@ -1,4 +1,4 @@
-.popup__field {
+.popup__input {
   border: 0;
   padding: 30px 0 12px 0;
   min-width: 358px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .popup__field {
+  .popup__input {
     min-width: 238px;
   }
 }
