@@ -1,10 +1,19 @@
+const validationParams = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
 const showInputError = (inputElement, errorElement, inputErrorClass, errorClass) => {
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(errorClass);
 };
 
-const hideInputerror = (inputElement, errorElement, inputErrorClass, errorClass) => {
+const hideInputError = (inputElement, errorElement, inputErrorClass, errorClass) => {
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
@@ -17,7 +26,7 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   if(!inputElement.validity.valid) {
     showInputError(inputElement, errorElement, inputErrorClass, errorClass);
   } else {
-    hideInputerror(inputElement, errorElement, inputErrorClass, errorClass);
+    hideInputError(inputElement, errorElement, inputErrorClass, errorClass);
   }
 };
 
@@ -60,7 +69,7 @@ const setEventListeners  = (formElement, inputSelector, submitButtonSelector, in
   });
 
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-  toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
+
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
@@ -84,11 +93,4 @@ const enableValidation = (config) => {
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}); 
+enableValidation(validationParams); 

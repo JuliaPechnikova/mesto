@@ -52,7 +52,7 @@
           <span id="username-error" class="popup__error"></span>
           <input type="text" value="" placeholder="О себе" class="popup__input" id="description" name="description" minlength="2" maxlength="200" required>
           <span id="description-error" class="popup__error"></span>
-          <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
+          <button type="submit" class="popup__button popup__button-edit-profile popup__button_disabled">Сохранить</button>
         </form>
       </div>
     </div>
@@ -67,7 +67,7 @@
           <span id="photoname-error" class="popup__error"></span>
           <input value="" placeholder="Ссылка на картинку" class="popup__input" id="link" name="link" type="url" required>
           <span id="link-error" class="popup__error"></span>
-          <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
+          <button type="submit" class="popup__button popup__button-add-card popup__button_disabled">Сохранить</button>
         </form>
       </div>
     </div>
@@ -92,6 +92,7 @@
         </div>
       </li>
     </template>
+    <script src="./scripts/initial-сards.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/validate.js"></script>
   </body>
