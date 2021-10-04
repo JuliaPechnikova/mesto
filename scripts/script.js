@@ -18,7 +18,7 @@ const submitCardButton = document.querySelector('.popup__button-add-card');
 //Секции с попапами
 const popupProfile = document.querySelector('.popup_edit-profile');
 const popupCard = document.querySelector('.popup_add-card');
-const popupPhoto = document.querySelector('.popup_full-photo');
+export const popupPhoto = document.querySelector('.popup_full-photo');
 
 //Формы на отправку
 const formEditor = document.querySelector('#popup__form-editor');
@@ -54,9 +54,22 @@ const validationParams = {
 const validationProfileForm = new FormValidator(validationParams, formEditor);
 const validationCardForm = new FormValidator(validationParams, formCard);
 
+//Включение валидации
+validationProfileForm.enableValidation();
+validationCardForm.enableValidation();
+
+//Функция очистки ошибок валидации
+function cleanValidationMessages(cleanFormElement, validationForm) { 
+  const cleanFormList = cleanFormElement.querySelectorAll(validationParams.inputSelector); 
+  cleanFormList.forEach((inputElement) => { 
+    validationForm.hideInputError(inputElement); 
+  });
+};
+
 //Открыть форму для редактирования профиля
 function openProfilePopup() {
-  validationProfileForm.enableValidation();
+  cleanValidationMessages(formEditor, validationProfileForm);
+  validationProfileForm.enableSubmitButton();
   usernameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
   openPopup(popupProfile);
@@ -64,7 +77,8 @@ function openProfilePopup() {
 
 //Открыть форму для добавления карточки
 function openCardPopup(){
-  validationCardForm.enableValidation();
+  cleanValidationMessages(formCard, validationCardForm);
+  validationCardForm.disableSubmitButton();
   photoNameInput.value = '';
   linkInput.value = '';
   openPopup(popupCard);
@@ -82,12 +96,17 @@ const postingCardHandler = (event) => {
   closePopup(popupCard);
 };
 
-const renderCard = (data, place) => {
+const generateEachCard = (data) => {
   const card = new Card(data, cardsContainer);
   const cardElement = card.generateCard();
-  place.prepend(cardElement);
-};
+  return cardElement;
+}
 
+const renderCard = (data, place) => { 
+  place.prepend(generateEachCard(data)); 
+};
+  
+//Отображает начальный список карточек
 initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
@@ -114,7 +133,7 @@ function closePopupOnClick(evt){
 
 //Открыть/закрыть попапы
 
-export default function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupESC);
   popup.addEventListener('click', closePopupOnClick);

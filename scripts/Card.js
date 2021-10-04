@@ -1,4 +1,4 @@
-import openPopup from "./script.js";
+import {popupPhoto, openPopup} from "./script.js";
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -50,7 +50,6 @@ export default class Card {
     photo.alt = this._name;
     photoCaption.textContent = this._name;
 
-    const popupPhoto = document.querySelector('.popup_full-photo');
     openPopup(popupPhoto);
   };
 
