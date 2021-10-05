@@ -11,9 +11,9 @@ const profileDescription = content.querySelector('.profile__description');
 //Кнопка добавления карточки
 const addCardButton = content.querySelector('.profile__add-button');
 
-//Кнопки сабмитов
-const submitProfileButton = document.querySelector('.popup__button-edit-profile');
-const submitCardButton = document.querySelector('.popup__button-add-card');
+//Фото и подпись открываемых карточек
+export const photo = document.querySelector('.popup__photo');
+export const photoCaption = document.querySelector('.popup__photo-caption');
 
 //Секции с попапами
 const popupProfile = document.querySelector('.popup_edit-profile');
@@ -58,17 +58,9 @@ const validationCardForm = new FormValidator(validationParams, formCard);
 validationProfileForm.enableValidation();
 validationCardForm.enableValidation();
 
-//Функция очистки ошибок валидации
-function cleanValidationMessages(cleanFormElement, validationForm) { 
-  const cleanFormList = cleanFormElement.querySelectorAll(validationParams.inputSelector); 
-  cleanFormList.forEach((inputElement) => { 
-    validationForm.hideInputError(inputElement); 
-  });
-};
-
 //Открыть форму для редактирования профиля
 function openProfilePopup() {
-  cleanValidationMessages(formEditor, validationProfileForm);
+  validationProfileForm.hideInputErrors();
   validationProfileForm.enableSubmitButton();
   usernameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
@@ -77,7 +69,7 @@ function openProfilePopup() {
 
 //Открыть форму для добавления карточки
 function openCardPopup(){
-  cleanValidationMessages(formCard, validationCardForm);
+  validationCardForm.hideInputErrors();
   validationCardForm.disableSubmitButton();
   photoNameInput.value = '';
   linkInput.value = '';

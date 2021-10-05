@@ -35,11 +35,10 @@ export default class FormValidator {
   
   //Переключение состояния кнопки submit
   _toggleButtonState = () => {
-  const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     if (this._hasInvalidInput(this._inputList) || this._hasNoInput(this._inputList)) {
-      this.disableSubmitButton(buttonElement);
+      this.disableSubmitButton(this._buttonElement);
     } else {
-      this.enableSubmitButton(buttonElement);
+      this.enableSubmitButton(this._buttonElement);
     }
   };
 
@@ -50,12 +49,16 @@ export default class FormValidator {
     errorElement.classList.add(this._errorClass);
   };
   
-  hideInputError = (inputElement) => {
+  _hideInputError = (inputElement) => {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); 
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
   };
+
+  hideInputErrors = () => {
+    this._inputList.forEach(input => this._hideInputError(input));
+  } 
   
   //Проверка валидности поля
   _checkInputValidity = (inputElement) => {
@@ -63,7 +66,7 @@ export default class FormValidator {
     if(!inputElement.validity.valid) {
       this._showInputError(inputElement);
     } else {
-      this.hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   };
 
@@ -73,7 +76,6 @@ export default class FormValidator {
     });
   
     this._inputList.forEach(inputElement => {
-      this.hideInputError(inputElement);
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList);

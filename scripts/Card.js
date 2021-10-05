@@ -1,4 +1,4 @@
-import {popupPhoto, openPopup} from "./script.js";
+import {popupPhoto, openPopup, photo, photoCaption} from "./script.js";
 
 export default class Card {
   constructor(data, cardSelector) {
@@ -42,10 +42,6 @@ export default class Card {
 
   //Открыть фото карточки
   _openPhoto(){
-    //Фото и подпись открываемых карточек
-    const photo = document.querySelector('.popup__photo');
-    const photoCaption = document.querySelector('.popup__photo-caption');
-
     photo.src = this._link;
     photo.alt = this._name;
     photoCaption.textContent = this._name;
