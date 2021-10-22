@@ -1,10 +1,8 @@
-import {popupPhoto, openPopup, photo, photoCaption} from "./script.js";
-
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor({data, handleCardClick}) {
     this._link = data.link;
     this._name = data.name;
-    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -37,17 +35,8 @@ export default class Card {
     //Удаление карточки
     this._element.querySelector('.element__trash-btn').addEventListener('click', this._removeCard);
     //Слушатель на открытие фото
-    this._element.querySelector('.element__image').addEventListener('click', () => this._openPhoto());
+    this._element.querySelector('.element__image').addEventListener('click', () => this._handleCardClick());
   }
-
-  //Открыть фото карточки
-  _openPhoto(){
-    photo.src = this._link;
-    photo.alt = this._name;
-    photoCaption.textContent = this._name;
-
-    openPopup(popupPhoto);
-  };
 
   //Лайк
   _likeCard(event){
