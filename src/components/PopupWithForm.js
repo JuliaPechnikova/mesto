@@ -1,15 +1,15 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup{
-  constructor(popupSelector, submitForm, popupForm){
+  constructor(popupSelector, submitForm){
     super(popupSelector);
     this._submitForm = submitForm;
-    this._popupForm = popupForm;
+    this._popupForm = this._popup.querySelector('.popup__form');
+    // достаём все элементы полей
+    this._inputList = this._popupForm.querySelectorAll('.popup__input');
   }
 
   _getInputValues() {
-    // достаём все элементы полей
-    this._inputList = this._popupForm.querySelectorAll('.popup__input');
     // создаём пустой объект
     this._formValues = {};
     // добавляем в этот объект значения всех полей

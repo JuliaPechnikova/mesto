@@ -4,9 +4,11 @@ export default class UserInfo {
     this._profileDescription = document.querySelector(profileDescriptionSelector);
   }
 
-  getUserInfo(usernameInput, descriptionInput) {
-    usernameInput.value = this._profileName.textContent;
-    descriptionInput.value = this._profileDescription.textContent;
+  getUserInfo() {
+    return {
+      usernameInput: this._profileName.textContent,
+      descriptionInput: this._profileDescription.textContent
+    }
   }
 
   setUserInfo(profileInputs) {

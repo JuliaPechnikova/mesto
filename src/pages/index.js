@@ -3,7 +3,6 @@ import './styles/index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -20,11 +19,12 @@ import {
   initialCards
 } from '../utils/constants.js';
 
-const popupPhoto = new Popup('.popup_full-photo');
-
 //Генерация валидации для форм
 const validationProfileForm = new FormValidator(validationParams, formEditor);
 const validationCardForm = new FormValidator(validationParams, formCard);
+
+const popupWithImage = new PopupWithImage('.popup_full-photo');
+popupWithImage.setEventListeners();
 
 //Включение валидации
 validationProfileForm.enableValidation();
@@ -35,24 +35,23 @@ const userInfo = new UserInfo('.profile__name', '.profile__description');
 
 //Открыть форму для редактирования профиля
 function openProfilePopup() {
-  validationProfileForm.hideInputErrors();
+  validationProfileForm.resetValidation();
   validationProfileForm.enableSubmitButton();
-  userInfo.getUserInfo(usernameInput, descriptionInput);
+  const userInfoData = userInfo.getUserInfo();
+  usernameInput.value = userInfoData.usernameInput;
+  descriptionInput.value = userInfoData.descriptionInput;
   popupProfile.open();
 };
 
 //Открыть форму для добавления карточки
 function openCardPopup(){
-  validationCardForm.hideInputErrors();
-  validationCardForm.disableSubmitButton();
+  validationCardForm.resetValidation();
   popupCard.open();
 };
 
 const generateEachCard = (data) => {
   const card = new Card({data, handleCardClick(){
-    const popupWithImage = new PopupWithImage('.popup_full-photo', data.link, data.name);
-    popupWithImage.open();
-    popupPhoto.setEventListeners();
+    popupWithImage.open(data.link, data.name);
   }});
   const cardElement = card.generateCard();
   return cardElement;
@@ -68,13 +67,7 @@ defaultCardList.renderItem();
 
 // Объявление данных, содержащихся в карточках
 const postingCardHandler = (cardInputs) => {
-  const newCardElement = new Section({
-    items: [cardInputs],
-    renderer: (data) => {
-      newCardElement.addItem(generateEachCard(data));
-    }
-  }, cardsContainer);
-  newCardElement.renderItem();
+  defaultCardList.addItem(generateEachCard(cardInputs));
   popupCard.close();
 };
 
@@ -83,8 +76,8 @@ const submitProfileForm = (profileInputs) => {
   popupProfile.close();
 }
 
-const popupCard = new PopupWithForm('.popup_add-card', postingCardHandler, formCard);
-const popupProfile = new PopupWithForm('.popup_edit-profile', submitProfileForm, formEditor);
+const popupCard = new PopupWithForm('.popup_add-card', postingCardHandler);
+const popupProfile = new PopupWithForm('.popup_edit-profile', submitProfileForm);
 
 popupCard.setEventListeners();
 popupProfile.setEventListeners();

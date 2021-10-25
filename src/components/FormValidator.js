@@ -56,8 +56,9 @@ export default class FormValidator {
     errorElement.textContent = '';
   };
 
-  hideInputErrors = () => {
-    this._inputList.forEach(input => this._hideInputError(input));
+  resetValidation = () => {
+    this._toggleButtonState();
+    this._inputList.forEach(inputElement => this._hideInputError(inputElement));
   } 
   
   //Проверка валидности поля
