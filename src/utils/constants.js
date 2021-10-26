@@ -17,6 +17,9 @@ const descriptionInput = document.querySelector('#description');
 //Секция, куда будут вставлятся карточки
 const cardsContainer = content.querySelector('.elements');
 
+//Шаблон карточки, вставляемый в секцию элементс
+const cardTemplate = '#element-template';
+
 //Параметры для валидации форм
 const validationParams = {
   formSelector: '.popup__form',
@@ -63,5 +66,6 @@ export {
   descriptionInput,
   cardsContainer,
   validationParams,
+  cardTemplate,
   initialCards
 };

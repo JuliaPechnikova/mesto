@@ -16,6 +16,7 @@ import {
   descriptionInput,
   cardsContainer,
   validationParams,
+  cardTemplate,
   initialCards
 } from '../utils/constants.js';
 
@@ -52,7 +53,7 @@ function openCardPopup(){
 const generateEachCard = (data) => {
   const card = new Card({data, handleCardClick(){
     popupWithImage.open(data.link, data.name);
-  }});
+  }, cardTemplate});
   const cardElement = card.generateCard();
   return cardElement;
 }
