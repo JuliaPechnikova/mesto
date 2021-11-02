@@ -15,15 +15,18 @@
       <main class="content">
         <section class="profile">
           <div class="profile__user">
-            <img class="profile__avatar" src="<%=require('./images/avatar-image.jpg')%>" alt="Аватар">
+            <div class="profile__avatar-cover">
+              <img class="profile__add-photo-button" src="<%=require('./images/avatar-edit-button.svg')%>" alt="Редактировать">
+              <img class="profile__avatar" src="<%=require('./images/avatar-image.jpg')%>" alt="Аватар">
+            </div>
             <div class="profile__info">
               <div class="profile__info-edit">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <h1 class="profile__name">Сульфат Алюминия</h1>
                 <button type="button" class="profile__edit-button">
                   <img class="profile__edit-button-image" src="<%=require('./images/profile-edit-button.svg')%>" alt="Редактировать">
                 </button>
               </div>
-              <p class="profile__description">Исследователь океана</p>
+              <p class="profile__description">Самый лучший день, заходил не вчера</p>
             </div>
           </div>
           <button type="button" class="profile__add-button" >
@@ -37,12 +40,12 @@
         </section>
       </main>
       <footer class="footer">
-        <p class="footer__copyright">© 2020 Mesto Russia</p>
+        <p class="footer__copyright">© 2021 Mesto Russia</p>
       </footer>
     </div>
     <div class="popup popup_edit-profile">
       <div class="popup__container">
-        <button class="popup__close-btn popup__close-btn_editor" type="reset">
+        <button class="popup__close-btn" type="reset">
           <img class="popup__close-btn-image" src="<%=require('./images/edit-form-image.svg')%>" alt="X">
         </button>
         <h2 class="popup__header">Редактировать профиль</h2>
@@ -55,9 +58,22 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_edit-prifile-photo">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="reset">
+          <img class="popup__close-btn-image" src="<%=require('./images/edit-form-image.svg')%>" alt="X">
+        </button>
+        <h2 class="popup__header">Обновить аватар</h2>
+        <form class="popup__form" name="edit-profile-photo" id="popup__form-profile-photo" action="#" method="POST" novalidate>
+          <input value="" placeholder="Ссылка на картинку" class="popup__input" id="profilephoto" name="profilephoto" type="url" required>
+          <span id="profilephoto-error" class="popup__error"></span>
+          <button type="submit" class="popup__button popup__button-add-profile-photo popup__button_disabled">Сохранить</button>
+        </form>
+      </div>
+    </div>
     <div class="popup popup_add-card">
       <div class="popup__container">
-        <button class="popup__close-btn popup__close-btn_card" type="reset">
+        <button class="popup__close-btn" type="reset">
           <img class="popup__close-btn-image" src="<%=require('./images/edit-form-image.svg')%>" alt="X">
         </button>
         <h2 class="popup__header">Новое место</h2>
@@ -67,6 +83,17 @@
           <input value="" placeholder="Ссылка на картинку" class="popup__input" id="link" name="link" type="url" required>
           <span id="link-error" class="popup__error"></span>
           <button type="submit" class="popup__button popup__button-add-card popup__button_disabled">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_delete-card">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="reset">
+          <img class="popup__close-btn-image" src="<%=require('./images/edit-form-image.svg')%>" alt="X">
+        </button>
+        <h2 class="popup__header popup__header_theme_delete-card">Вы уверены?</h2>
+        <form class="popup__form" name="delete-place" id="popup__delete-form-card" action="#" method="POST">
+          <button type="submit" class="popup__button popup__button_theme_delete-card popup__button-delete-card">Да</button>
         </form>
       </div>
     </div>
@@ -87,7 +114,10 @@
         </button>
         <div class="element__caption">
           <h2 class="element__header"></h2>
-          <button type="button" class="element__button-heart"></button>
+          <div>
+            <button type="button" class="element__button-heart"></button>
+            <p class="element__button-heart-counter">1</p>
+          </div>
         </div>
       </li>
     </template>

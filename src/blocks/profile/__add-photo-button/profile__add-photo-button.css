@@ -1,0 +1,6 @@
+.profile__add-photo-button {
+  position: absolute;
+  opacity: 0;
+  padding: 47px;
+  background: #000000CC;
+}

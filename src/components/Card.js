@@ -1,8 +1,9 @@
 export default class Card {
-  constructor({data, handleCardClick, cardTemplate}) {
+  constructor({data, handleCardClick, handleCardDelete, cardTemplate}) {
     this._link = data.link;
     this._name = data.name;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
     this._cardTemplate = cardTemplate;
   }
 
@@ -33,7 +34,7 @@ export default class Card {
     //Добавление лайка
     this._element.querySelector('.element__button-heart').addEventListener('click', this._likeCard);
     //Удаление карточки
-    this._element.querySelector('.element__trash-btn').addEventListener('click', this._removeCard);
+    this._element.querySelector('.element__trash-btn').addEventListener('click', () => this._handleCardDelete());
     //Слушатель на открытие фото
     this._element.querySelector('.element__image').addEventListener('click', () => this._handleCardClick());
   }
@@ -43,7 +44,7 @@ export default class Card {
     event.target.classList.toggle('element__button-heart_active');
   };
 
-//Удалить карточку
+  //Удалить карточку
   _removeCard(event){
     event.target.closest('.element').remove();
   };

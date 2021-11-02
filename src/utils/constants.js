@@ -2,6 +2,7 @@
 //Объявление данных формы редактирования профиля
 const content = document.querySelector('.content');
 const editButton = content.querySelector('.profile__edit-button');
+const editAvatar = content.querySelector('.profile__add-photo-button');
 
 //Кнопка добавления карточки
 const addCardButton = content.querySelector('.profile__add-button');
@@ -9,6 +10,7 @@ const addCardButton = content.querySelector('.profile__add-button');
 //Формы на отправку
 const formEditor = document.querySelector('#popup__form-editor');
 const formCard = document.querySelector('#popup__form-card');
+const formPhotoEditor = document.querySelector('#popup__form-profile-photo');
 
 //Данные формы редактирования
 const usernameInput = document.querySelector('#username');
@@ -60,8 +62,10 @@ const initialCards = [
 export {  
   editButton,
   addCardButton,
+  editAvatar,
   formEditor,
   formCard,
+  formPhotoEditor,
   usernameInput,
   descriptionInput,
   cardsContainer,

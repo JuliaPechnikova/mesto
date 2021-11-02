@@ -1,0 +1,8 @@
+.profile__avatar-cover{
+  width: 120px;
+  height: 120px;
+}
+
+.profile__avatar-cover:hover .profile__add-photo-button {
+  opacity: 1;
+}
