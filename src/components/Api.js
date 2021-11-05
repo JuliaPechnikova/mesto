@@ -22,20 +22,20 @@ export default class Api {
     .then(this.serverResponseChecker)
   }
 
-  setCard(cardName, cardLink){
+  setCard(cardLink, cardName){
     return fetch(`${this._baseUrl}cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: cardName,
-        link: cardLink
+        link: cardLink,
+        name: cardName
       })
     })
     .then(this.serverResponseChecker)
   }
 
   getUserInfo(){
-    return fetch(`${this._baseUrl}users`, {
+    return fetch(`${this._baseUrl}users/me`, {
       method: 'GET',
       headers: this._headers
     })
@@ -58,5 +58,47 @@ export default class Api {
     .then(this.serverResponseChecker)
   }
 
-  // другие методы работы с API
+  putCardLikes(cardID) {
+    return fetch(`${this._baseUrl}cards/likes/${cardID}`, {
+      method: 'PUT',
+      headers: this._headers,
+      body: JSON.stringify({
+        _id: cardID
+      })
+    })
+    .then(this.serverResponseChecker)
+  }
+
+  deleteCardLikes(likeID) {
+    return fetch(`${this._baseUrl}cards/likes/${likeID}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      body: JSON.stringify({
+        _id: likeID
+      })
+    })
+    .then(this.serverResponseChecker)
+  }
+
+  setUserAvatar(userPhoto) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: userPhoto
+      })
+    })
+    .then(this.serverResponseChecker)
+  }
+
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}cards/${cardID}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      body: JSON.stringify({
+        _id: cardID
+      })
+    })
+    .then(this.serverResponseChecker)
+  }
 }

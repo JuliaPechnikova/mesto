@@ -50,9 +50,9 @@
         </button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form" name="edit-profile" id="popup__form-editor" action="#" method="POST" novalidate>
-          <input type="text" value="" placeholder="Имя" class="popup__input" id="username" name="profilename" minlength="2" maxlength="40" required>
+          <input type="text" value="" placeholder="Имя" class="popup__input" id="username" name="name" minlength="2" maxlength="40" required>
           <span id="username-error" class="popup__error"></span>
-          <input type="text" value="" placeholder="О себе" class="popup__input" id="description" name="description" minlength="2" maxlength="200" required>
+          <input type="text" value="" placeholder="О себе" class="popup__input" id="description" name="about" minlength="2" maxlength="200" required>
           <span id="description-error" class="popup__error"></span>
           <button type="submit" class="popup__button popup__button-edit-profile popup__button_disabled">Сохранить</button>
         </form>
@@ -65,8 +65,8 @@
         </button>
         <h2 class="popup__header">Обновить аватар</h2>
         <form class="popup__form" name="edit-profile-photo" id="popup__form-profile-photo" action="#" method="POST" novalidate>
-          <input value="" placeholder="Ссылка на картинку" class="popup__input" id="profilephoto" name="profilephoto" type="url" required>
-          <span id="profilephoto-error" class="popup__error"></span>
+          <input value="" placeholder="Ссылка на картинку" class="popup__input" id="avatar" name="avatar" type="url" required>
+          <span id="avatar-error" class="popup__error"></span>
           <button type="submit" class="popup__button popup__button-add-profile-photo popup__button_disabled">Сохранить</button>
         </form>
       </div>
@@ -92,7 +92,7 @@
           <img class="popup__close-btn-image" src="<%=require('./images/edit-form-image.svg')%>" alt="X">
         </button>
         <h2 class="popup__header popup__header_theme_delete-card">Вы уверены?</h2>
-        <form class="popup__form" name="delete-place" id="popup__delete-form-card" action="#" method="POST">
+        <form class="popup__form" name="delete-place" id="popup__delete-form-card" action="#" method="DELETE" novalidate>
           <button type="submit" class="popup__button popup__button_theme_delete-card popup__button-delete-card">Да</button>
         </form>
       </div>

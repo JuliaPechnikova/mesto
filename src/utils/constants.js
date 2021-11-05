@@ -11,6 +11,7 @@ const addCardButton = content.querySelector('.profile__add-button');
 const formEditor = document.querySelector('#popup__form-editor');
 const formCard = document.querySelector('#popup__form-card');
 const formPhotoEditor = document.querySelector('#popup__form-profile-photo');
+const formCardDelete = document.querySelector('#popup__delete-form-card');
 
 //Данные формы редактирования
 const usernameInput = document.querySelector('#username');
@@ -66,6 +67,7 @@ export {
   formEditor,
   formCard,
   formPhotoEditor,
+  formCardDelete,
   usernameInput,
   descriptionInput,
   cardsContainer,

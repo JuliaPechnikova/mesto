@@ -4,6 +4,10 @@ export default class ProfilePhoto {
   }
 
   setUserPhoto(profileInputs) {
-    this._profilePhoto.src = profileInputs.profilephoto;
+    this._profilePhoto.src = profileInputs.avatar;
+  }
+
+  getUserPhoto() {
+    return this._profilePhoto.src;
   }
 }

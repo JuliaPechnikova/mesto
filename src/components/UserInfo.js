@@ -12,7 +12,7 @@ export default class UserInfo {
   }
 
   setUserInfo(profileInputs) {
-    this._profileName.textContent = profileInputs.profilename;
-    this._profileDescription.textContent = profileInputs.description; 
+    this._profileName.textContent = profileInputs.name;
+    this._profileDescription.textContent = profileInputs.about; 
   }
 }

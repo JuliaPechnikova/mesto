@@ -30,6 +30,7 @@
 @import url(../../blocks/element/__button-heart-counter/element__button-heart-counter.css);
 @import url(../../blocks/element/__button-heart/_active/element__button-heart_active.css);
 @import url(../../blocks/element/__trash-btn/element__trash-btn.css);
+@import url(../../blocks/element/__trash-btn/_active/element__trash-btn_active.css);
 @import url(../../blocks/element/__trash-btn-image/element__trash-btn-image.css);
 
 @import url(../../blocks/popup/popup.css);
