@@ -35,8 +35,8 @@ export default class Card {
     this._elementImage.alt = this._name;
 
     this.countCardLikes(this._likes);
-    this._checkLikeExists();
-    this._checkCardOwner();
+    this._toggleButtonLikeExists();
+    this._toggleButtonTrashOwner();
   
     return this._element;
   }
@@ -54,17 +54,16 @@ export default class Card {
     this._heartCounter.textContent = likesArr.length;
   }
 
-  _checkLikeExists() {
-    this._likes.forEach((card) => {
-      if (card._id === this._profileID)
-        this._heartButton.classList.add('element__button-heart_active')
-      else {
-        this._heartButton.classList.remove('element__button-heart_active');
-      }
-    });
+  _toggleButtonLikeExists() {
+    if (this._likes.some((like) => like._id === this._profileID)){
+      this._heartButton.classList.add('element__button-heart_active');
+    }
+    else {
+      this._heartButton.classList.remove('element__button-heart_active');
+    }
   }
 
-  _checkCardOwner() {
+  _toggleButtonTrashOwner() {
     if (this._data.owner._id === this._profileID)
       this._trashButton.classList.add('element__trash-btn_active')
     else {

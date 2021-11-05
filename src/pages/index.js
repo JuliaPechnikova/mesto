@@ -147,10 +147,9 @@ const postingCardHandler = (cardInputs) => {
 
 const submitProfileForm = (profileInputs) => {
   saveMessage (formEditor, 'Сохранение...');
-  userInfo.setUserInfo(profileInputs);
-  userInfoData = userInfo.getUserInfo();
-  api.setUserProfile(userInfoData.usernameInput, userInfoData.descriptionInput)
+  api.setUserProfile(profileInputs.name, profileInputs.about)
   .then(() => {
+    userInfo.setUserInfo(profileInputs);
     popupProfile.close();
   })
   .catch(err => console.log(`Ошибка изменения параметров профиля: ${err}`))
@@ -161,9 +160,9 @@ const submitProfileForm = (profileInputs) => {
 
 const submitProfilePhoto = (profileInputs) => {
   saveMessage (formPhotoEditor, 'Сохранение...');
-  profilePhoto.setUserPhoto(profileInputs);
-  api.setUserAvatar(profilePhoto.getUserPhoto())
+  api.setUserAvatar(profileInputs.avatar)
   .then(() => {
+    profilePhoto.setUserPhoto(profileInputs);
     popupPhotoProfile.close();
   })
   .catch(err => console.log(`Ошибка изменения аватара: ${err}`))

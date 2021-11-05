@@ -1,5 +1,3 @@
-import { data } from "jquery";
-
 export default class Api {
   constructor(content) {
     this._baseUrl = content.baseUrl;
