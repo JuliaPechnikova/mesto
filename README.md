@@ -4,7 +4,7 @@
 
 Проект "Место" - это интерактивная страница пользователя с возможностью просмотра и добавления фотографий в общую ленту.
 
-В основе проекта используется макет в Figma ["Путешествие по России"](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1).  
+В основе проекта используется макет в Figma ["Mesto"](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-%2B-mobile).  
 
 ### Функциональность
 
